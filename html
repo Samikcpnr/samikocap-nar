@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sami Kocapınar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Yazı tipi */
+            margin: 0; /* Tarayıcı varsayılan margin'ini sıfırlar */
+            padding: 0; /* Tarayıcı varsayılan padding'ini sıfırlar */
+            background-color: #ffffff; /* Arka plan rengi */
+            color: #333333; /* Yazı rengi */
+            overflow: hidden; /* Sayfa taşmasını gizler */
+            -webkit-overflow-scrolling: touch; /* iOS cihazlarda pürüzsüz kaydırma */
+        }
+
+        /* Başlık (header) stili */
+        .header {
+            background-color: #1E88E5; /* Arka plan rengi */
+            padding: 10px; /* İç boşluk */
+            text-align: center; /* Metni ortalar */
+            font-size: 24px; /* Yazı boyutu */
+            font-weight: bold; /* Kalın yazı tipi */
+            position: relative; /* Konumlandırma türü */
+            color: #FFFFFF; /* Yazı rengi */
+            transition: background-color 0.3s ease; /* Arka plan renginin geçiş efekti */
+        }
+
+        /* Menü butonunun stili */
+        .menu-toggle {
+            display: block; /* Görünür hale getirir */
+            position: absolute; /* Mutlak konumlandırma */
+            top: 10px; /* Üstten 10px uzaklık */
+            right: 10px; /* Sağdan 10px uzaklık */
+            font-size: 24px; /* Yazı boyutu */
+            cursor: pointer; /* Fare işaretçisini değiştirir */
+            z-index: 1004; /* Diğer elemanlardan üstte kalır */
+            color: #FFFFFF; /* Yazı rengi */
+            transition: color 0.3s ease, transform 0.3s ease; /* Efekt geçişi */
+        }
+
+        /* Menü stili */
+        .menu {
+            display: block; /* Varsayılan olarak gizlenir */
+            position: absolute; /* Sabit konumlandırma */
+            top: 0; /* Üstten 0 uzaklık */
+            right: 0; /* Sağdan 0 uzaklık */
+            background-color: #F5F5F5; /* Arka plan rengi */
+            width: 300px; /* Genişlik */
+            height: 100%; /* Yükseklik */
+            padding: 0px; /* İç boşluk */
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Gölgeler */
+            overflow-y: auto; /* Dikey kaydırma */
+            z-index: 1004; /* Diğer elemanlardan altında kalır */
+            transform: translateX(100%); /* Başlangıçta menü ekran dışında */
+            opacity: 0; /* Opaklık başlangıçta sıfır */
+            transition: transform 0.3s ease, opacity 0.3s ease; /* Efektler */
+        }
+
+        /* Menü butonuna fare ile gelindiğinde uygulanacak stil */
+        .menu-toggle:hover {
+            color: #FFD700; /* Renk değişimi (Altın rengi) */
+            transform: scale(1.2); /* Büyüme efekti */
+        }
+
+        /* Menü açıldığında uygulanacak stil */
+        .menu.open {
+            display: block; /* Görünür hale getirir */
+            transform: translateX(0); /* Menü açıldığında ekran içinde olur */
+            opacity: 1; /* Opaklık tamamen görünür */
+        }
+
+        /* Sol sütun (profil) stili */
+        .left {
+            width: 20%; /* Genişlik */
+            background-color: #f4f4f4; /* Arka plan rengi */
+            height: 100vh; /* Yükseklik */
+            position: fixed; /* Sabit konumlandırma */
+            left: 0; /* Soldan 0 uzaklık */
+            top: 0; /* Üstten 0 uzaklık */
+            padding: 20px; /* İç boşluk */
+            transition: width 0.3s ease; /* Genişlik değişim efekti */
+        }
+
+        .left.small {
+            width: 5%; /* Küçültülmüş genişlik */
+        }
+
+        .left .profile-wrapper img {
+            width: 100px; /* Profil fotoğrafı genişliği */
+            height: 100px; /* Profil fotoğrafı yüksekliği */
+            border-radius: 50%; /* Yuvarlak profil fotoğrafı */
+        }
+
+        .left p {
+            text-align: center; /* Metni ortalar */
+        }
+
+        .social-icons {
+            text-align: center; /* İkonları ortalar */
+            margin-top: 10px; /* Üstten boşluk */
+        }
+
+        .social-icons a {
+            margin: 0 10px; /* İkonlar arasında boşluk */
+            color: #333333; /* İkon rengi */
+            text-decoration: none; /* Alt çizgi yok */
+            font-size: 24px; /* İkon boyutu */
+        }
+
+        .profile-icon {
+            position: absolute; /* Mutlak konumlandırma */
+            top: 10px; /* Üstten 10px uzaklık */
+            left: 50%; /* Sol kenardan ortalama */
+            transform: translateX(-50%); /* Tam ortalama */
+            font-size: 24px; /* İkon boyutu */
+            cursor: pointer; /* Fare işaretçisini değiştirir */
+        }
+
+        /* Ana içerik stili */
+        .container {
+            margin-left: 20%; /* Sol sütunun genişliği kadar boşluk bırakır */
+            transition: margin-left 0.3s ease; /* Marjin değişim efekti */
+        }
+
+        .container .right.expanded {
+            margin-left: 5%; /* Küçültülmüş sol sütun için boşluk */
+        }
+
+        .project-section {
+            margin-bottom: 40px; /* Bölüm aralarına boşluk */
+        }
+
+        /* Alt bilgi (footer) stili */
+        .footer {
+            background-color: #1E88E5; /* Arka plan rengi */
+            color: #FFFFFF; /* Yazı rengi */
+            text-align: center; /* Metni ortalar */
+            padding: 10px; /* İç boşluk */
+            position: fixed; /* Sabit konumlandırma */
+            bottom: 0; /* Alt kısımdan sıfır uzaklık */
+            width: 100%; /* Tam genişlik */
+        }
+
+        /* Sağ sütun stili */
+        .right {
+            margin-left: 20%; /* Sol sütunun genişliği kadar boşluk bırakır */
+            padding: 20px; /* İç boşluk */
+        }
+
+        .right .project-section h2 {
+            color: #1E88E5; /* Başlık rengi */
+        }
+
+        .right .project-section ul {
+            list-style-type: disc; /* Madde işaretli liste */
+            margin-left: 20px; /* Sol boşluk */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <span class="menu-toggle" onclick="toggleMenu()">☰</span>İş Deneyimleri
+        </div>
+    </header>
+
+    <nav class="menu" id="menu">
+        <ul id="menu-list">
+            <li><a href="#proje1">Motivasyon Ve Vizyonum</a></li>
+            <li><a href="#proje2">Mikrodenetleyiciler</a></li>
+            <li><a href="#proje3">Konnektörler</a></li>
+            <li><a href="#proje4">Leaky Feeder Cablo</a></li>
+            <li><a href="#proje5">Proje 5</a></li>
+            <li><a href="#proje6">Proje 6</a></li>
+            <li><a href="#proje7">Proje 7</a></li>
+            <li><a href="#proje8">Proje 8</a></li>
+            <li><a href="#proje9">Proje 9</a></li>
+            <li><a href="#proje10">Proje 10</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <aside class="left" id="left-column">
+            <div class="profile-wrapper">
+                <img src="Adsız tasarım_20240823_075656_0000.png" alt="Profil Fotoğrafı" id="profile-image">
+            </div>
+            <p>Sami Kocapınar</p>
+            <div class="social-icons">
+                <a href="https://instagram.com" target="_blank" class="fab fa-instagram"></a>
+                <a href="https://www.linkedin.com/in/sami-kocap%C4%B1nar-3589322a0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="fab fa-linkedin"></a>
+                <a href="https://github.com/Samikcpnr/SamiKocapinar" target="_blank" class="fab fa-github"></a>
+                <a href="https://www.youtube.com/@samikocapnar7043" target="_blank" class="fab fa-youtube"></a>
+                <a href="https://x.com/home" target="_blank" class="fab fa-twitter"></a>
+                <a href="mailto:samikcpnr@gmail.com" class="fas fa-envelope"></a>
+            </div>
+            <div class="profile-icon" id="profile-icon">
+                <i class="fas fa-user"></i>
+            </div>
+        </aside>
+        <section class="right">
+            <div id="proje1" class="project-section">
+                <h2>Motivasyonum ve Gelecek Vizyonum;</h2>
+                <p>Teknoloji ve yazılım dünyasına olan derin sevgi ve ilgim, her gün beni daha fazla öğrenmeye ve gelişmeye teşvik ediyor. Bu süreçte edindiğim bilgi ve beceriler, ülkemizin teknolojik alanda daha ileriye gitmesine katkıda bulunma arzumla birleşiyor. Bu motivasyonla, yazılım dünyasında sürekli yenilikleri takip ederek kendimi geliştiriyorum ve ülkemizin teknolojik başarısı için çalışıyorum.</p>
+            </div>
+            <div id="proje2" class="project-section">
+                <h2>Mikrodenetleyiciler</h2>
+                <p>Mikrodenetleyici (mikrodenetleyiciye İngilizcede kısaca MCU, MC, UC veya μC de denir) bir VLSI entegre devre çipinde küçük bir bilgisayar'dır. Mikrodenetleyiciler, gömülü sistemler içinde, belirli bir işlevi yerine getirmek üzere tasarlanmış küçük, entegre bir bilgisayardır. Genellikle bir mikroişlemci, bellek (RAM ve ROM), giriş/çıkış portları ve diğer destekleyici bileşenleri içerir.</p>
+            </div>
+            <div id="proje3" class="project-section">
+                <h2>Konnektörler</h2>
+                <p>Konnektörler, kablo devrelerinin yolunu en hızlı ve en kolay şekilde ayırmak ya da kesmek amacıyla kullanılır. Genellikle elektriksel sinyalleri veya güç iletimini sağlamak için kullanılırlar. Konnektörler, farklı tiplerde ve boyutlarda gelir ve çeşitli endüstrilerde, özellikle otomotiv, telekomünikasyon ve bilgisayar donanımlarında yaygın olarak kullanılır.</p>
+            </div>
+            <div id="proje4" class="project-section">
+                <h2>Leaky Feeder Kablo</h2>
+                <p>Yarıklı kablo tünel ve yer altı madenleri gibi ortamlarda kullanılan bir haberleşme sistemidir. Leaky feeder kablolar, radyo sinyallerinin kablo boyunca yayılmasına izin verir ve bu sinyallerin kapsama alanını genişletir. Bu sistemler, özellikle sinyalin zayıf olduğu yerlerde veya sinyalin geçişinin zor olduğu ortamlarda kullanılır.</p>
+            </div>
+            <a href="mailto:samikcpnr@gmail.com">samikcpnr@gmail.com</a>
+        </section>
+    </main>
+    <div class="footer">
+        &copy; 2024 Sami Kocapınar
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var leftColumn = document.getElementById('left-column');
+            var rightColumn = document.querySelector('.right');
+            var profileIcon = document.getElementById('profile-icon');
+            var menu = document.getElementById('menu');
+            var menuToggle = document.querySelector('.menu-toggle');
+
+            profileIcon.addEventListener('click', function() {
+                if (leftColumn.classList.contains('hidden')) {
+                    leftColumn.classList.remove('hidden'); // Sol sütunu tekrar aç
+                    leftColumn.classList.remove('small');
+                    rightColumn.classList.remove('expanded');
+                } else if (leftColumn.classList.contains('small')) {
+                    leftColumn.classList.remove('small'); // Küçük sütunu kaldır ve tam boyutlu sol sütunu göster
+                    rightColumn.classList.remove('expanded');
+                } else {
+                    leftColumn.classList.add('small'); // Sol sütunu küçült
+                    rightColumn.classList.add('expanded');
+                }
+            });
+
+            function toggleMenu() {
+                if (menu.classList.contains('open')) {
+                    menu.classList.remove('open'); // Menü kapanırken kaydır
+                } else {
+                    menu.classList.add('open'); // Menü açılırken kaydır
+                }
+            }
+
+            menuToggle.addEventListener('click', toggleMenu);
+
+            document.addEventListener('click', function(event) {
+                if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
+                    menu.classList.remove('open'); // Menü dışına tıklanınca kapat
+                }
+            });
+        });
+    </script>
+</body>
+</html>
