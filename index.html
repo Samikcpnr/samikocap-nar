@@ -4,161 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sami Kocapınar</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif; /* Yazı tipi */
-            margin: 0; /* Tarayıcı varsayılan margin'ini sıfırlar */
-            padding: 0; /* Tarayıcı varsayılan padding'ini sıfırlar */
-            background-color: #ffffff; /* Arka plan rengi */
-            color: #333333; /* Yazı rengi */
-            overflow: hidden; /* Sayfa taşmasını gizler */
-            -webkit-overflow-scrolling: touch; /* iOS cihazlarda pürüzsüz kaydırma */
-        }
-
-        /* Başlık (header) stili */
-        .header {
-            background-color: #1E88E5; /* Arka plan rengi */
-            padding: 10px; /* İç boşluk */
-            text-align: center; /* Metni ortalar */
-            font-size: 24px; /* Yazı boyutu */
-            font-weight: bold; /* Kalın yazı tipi */
-            position: relative; /* Konumlandırma türü */
-            color: #FFFFFF; /* Yazı rengi */
-            transition: background-color 0.3s ease; /* Arka plan renginin geçiş efekti */
-        }
-
-        /* Menü butonunun stili */
-        .menu-toggle {
-            display: block; /* Görünür hale getirir */
-            position: absolute; /* Mutlak konumlandırma */
-            top: 10px; /* Üstten 10px uzaklık */
-            right: 10px; /* Sağdan 10px uzaklık */
-            font-size: 24px; /* Yazı boyutu */
-            cursor: pointer; /* Fare işaretçisini değiştirir */
-            z-index: 1004; /* Diğer elemanlardan üstte kalır */
-            color: #FFFFFF; /* Yazı rengi */
-            transition: color 0.3s ease, transform 0.3s ease; /* Efekt geçişi */
-        }
-
-        /* Menü stili */
-        .menu {
-            display: block; /* Varsayılan olarak gizlenir */
-            position: absolute; /* Sabit konumlandırma */
-            top: 0; /* Üstten 0 uzaklık */
-            right: 0; /* Sağdan 0 uzaklık */
-            background-color: #F5F5F5; /* Arka plan rengi */
-            width: 300px; /* Genişlik */
-            height: 100%; /* Yükseklik */
-            padding: 0px; /* İç boşluk */
-            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Gölgeler */
-            overflow-y: auto; /* Dikey kaydırma */
-            z-index: 1004; /* Diğer elemanlardan altında kalır */
-            transform: translateX(100%); /* Başlangıçta menü ekran dışında */
-            opacity: 0; /* Opaklık başlangıçta sıfır */
-            transition: transform 0.3s ease, opacity 0.3s ease; /* Efektler */
-        }
-
-        /* Menü butonuna fare ile gelindiğinde uygulanacak stil */
-        .menu-toggle:hover {
-            color: #FFD700; /* Renk değişimi (Altın rengi) */
-            transform: scale(1.2); /* Büyüme efekti */
-        }
-
-        /* Menü açıldığında uygulanacak stil */
-        .menu.open {
-            display: block; /* Görünür hale getirir */
-            transform: translateX(0); /* Menü açıldığında ekran içinde olur */
-            opacity: 1; /* Opaklık tamamen görünür */
-        }
-
-        /* Sol sütun (profil) stili */
-        .left {
-            width: 20%; /* Genişlik */
-            background-color: #f4f4f4; /* Arka plan rengi */
-            height: 100vh; /* Yükseklik */
-            position: fixed; /* Sabit konumlandırma */
-            left: 0; /* Soldan 0 uzaklık */
-            top: 0; /* Üstten 0 uzaklık */
-            padding: 20px; /* İç boşluk */
-            transition: width 0.3s ease; /* Genişlik değişim efekti */
-        }
-
-        .left.small {
-            width: 5%; /* Küçültülmüş genişlik */
-        }
-
-        .left .profile-wrapper img {
-            width: 100px; /* Profil fotoğrafı genişliği */
-            height: 100px; /* Profil fotoğrafı yüksekliği */
-            border-radius: 50%; /* Yuvarlak profil fotoğrafı */
-        }
-
-        .left p {
-            text-align: center; /* Metni ortalar */
-        }
-
-        .social-icons {
-            text-align: center; /* İkonları ortalar */
-            margin-top: 10px; /* Üstten boşluk */
-        }
-
-        .social-icons a {
-            margin: 0 10px; /* İkonlar arasında boşluk */
-            color: #333333; /* İkon rengi */
-            text-decoration: none; /* Alt çizgi yok */
-            font-size: 24px; /* İkon boyutu */
-        }
-
-        .profile-icon {
-            position: absolute; /* Mutlak konumlandırma */
-            top: 10px; /* Üstten 10px uzaklık */
-            left: 50%; /* Sol kenardan ortalama */
-            transform: translateX(-50%); /* Tam ortalama */
-            font-size: 24px; /* İkon boyutu */
-            cursor: pointer; /* Fare işaretçisini değiştirir */
-        }
-
-        /* Ana içerik stili */
-        .container {
-            margin-left: 20%; /* Sol sütunun genişliği kadar boşluk bırakır */
-            transition: margin-left 0.3s ease; /* Marjin değişim efekti */
-        }
-
-        .container .right.expanded {
-            margin-left: 5%; /* Küçültülmüş sol sütun için boşluk */
-        }
-
-        .project-section {
-            margin-bottom: 40px; /* Bölüm aralarına boşluk */
-        }
-
-        /* Alt bilgi (footer) stili */
-        .footer {
-            background-color: #1E88E5; /* Arka plan rengi */
-            color: #FFFFFF; /* Yazı rengi */
-            text-align: center; /* Metni ortalar */
-            padding: 10px; /* İç boşluk */
-            position: fixed; /* Sabit konumlandırma */
-            bottom: 0; /* Alt kısımdan sıfır uzaklık */
-            width: 100%; /* Tam genişlik */
-        }
-
-        /* Sağ sütun stili */
-        .right {
-            margin-left: 20%; /* Sol sütunun genişliği kadar boşluk bırakır */
-            padding: 20px; /* İç boşluk */
-        }
-
-        .right .project-section h2 {
-            color: #1E88E5; /* Başlık rengi */
-        }
-
-        .right .project-section ul {
-            list-style-type: disc; /* Madde işaretli liste */
-            margin-left: 20px; /* Sol boşluk */
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -179,6 +26,27 @@
             <li><a href="#proje8">Proje 8</a></li>
             <li><a href="#proje9">Proje 9</a></li>
             <li><a href="#proje10">Proje 10</a></li>
+            <li><a href="#proje11">Proje 11</a></li>
+            <li><a href="#proje12">Proje 12</a></li>
+            <li><a href="#proje13">Proje 13</a></li>
+            <li><a href="#proje14">Proje 14</a></li>
+            <li><a href="#proje15">Proje 15</a></li>
+            <li><a href="#proje16">Proje 16</a></li>
+            <li><a href="#proje17">Proje 17</a></li>
+            <li><a href="#proje18">Proje 18</a></li>
+            <li><a href="#proje19">Proje 19</a></li>
+            <li><a href="#proje20">Proje 20</a></li>
+            <li><a href="#proje21">Proje 21</a></li>
+            <li><a href="#proje22">Proje 22</a></li>
+            <li><a href="#proje23">Proje 23</a></li>
+            <li><a href="#proje24">Proje 24</a></li>
+            <li><a href="#proje25">Proje 25</a></li>
+            <li><a href="#proje26">Proje 26</a></li>
+            <li><a href="#proje27">Proje 27</a></li>
+            <li><a href="#proje28">Proje 28</a></li>
+            <li><a href="#proje29">Proje 29</a></li>
+            <li><a href="#proje30">Proje 30</a></li>
+
         </ul>
     </nav>
 
@@ -188,6 +56,8 @@
                 <img src="Adsız tasarım_20240823_075656_0000.png" alt="Profil Fotoğrafı" id="profile-image">
             </div>
             <p>Sami Kocapınar</p>
+            <div class="contact">
+            </div>
             <div class="social-icons">
                 <a href="https://instagram.com" target="_blank" class="fab fa-instagram"></a>
                 <a href="https://www.linkedin.com/in/sami-kocap%C4%B1nar-3589322a0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="fab fa-linkedin"></a>
@@ -200,23 +70,119 @@
                 <i class="fas fa-user"></i>
             </div>
         </aside>
+        <br>
         <section class="right">
             <div id="proje1" class="project-section">
-                <h2>Motivasyonum ve Gelecek Vizyonum;</h2>
-                <p>Teknoloji ve yazılım dünyasına olan derin sevgi ve ilgim, her gün beni daha fazla öğrenmeye ve gelişmeye teşvik ediyor. Bu süreçte edindiğim bilgi ve beceriler, ülkemizin teknolojik alanda daha ileriye gitmesine katkıda bulunma arzumla birleşiyor. Bu motivasyonla, yazılım dünyasında sürekli yenilikleri takip ederek kendimi geliştiriyorum ve ülkemizin teknolojik başarısı için çalışıyorum.</p>
-            </div>
+            <h2>Motivasyonum ve Gelecek Vizyonum;</h2>
+            <p>Teknoloji ve yazılım dünyasına olan derin sevgi ve ilgim, her gün beni daha fazla öğrenmeye ve gelişmeye teşvik ediyor. Yazılımın ve teknolojinin sunduğu sonsuz olanaklar, yaratıcı çözümler geliştirme isteğimi ve yenilikçi projelere yönelme arzumuzu artırıyor. Dijital çağın getirdiği hızlı değişim ve dönüşüm, beni sürekli olarak yeni teknolojiler ve metodolojiler hakkında bilgi edinmeye yönlendiriyor. Bu süreçte, her yeni bilgi ve beceri kazanımı, kariyerimde bir adım daha ileri gitmemi sağlıyor.
+            <br><br>
+            Ancak, benim için çalışma motivasyonu sadece kişisel başarılarla sınırlı değil. Var olduğum topraklarda köklerimizden gelen miras, bana büyük bir sorumluluk ve ilham kaynağı sunuyor. Ecdadımızın bizlere bıraktığı değerler ve azim, ülkemizin daha iyi bir geleceğe ulaşması için çalışma isteğimi artırıyor. Geçmişin bilgi ve deneyimlerinden faydalanarak, ülkemizin teknolojik ve ekonomik gelişimine katkıda bulunmayı kendime bir görev olarak görüyorum.
+            <br><br>
+            Özellikle gerçekleştirdiğim staj, bu motivasyonu daha da güçlendirdi. Staj deneyimim, teknoloji alanında ülkemizdeki mevcut ve potansiyel yeniliklerin büyüklüğünü ve önemini doğrudan gözlemleme fırsatı sundu. Bu süreç, ülkemizde bu tür teknolojilerin geliştirilmesi ve uygulanması konusundaki heyecanımı artırdı. Her gün, teknoloji alanındaki bu gelişmeleri yakından takip etmek ve bu süreçte yer almak bana büyük bir ilham ve enerji verdi.
+            <br><br>
+            Staj sürecinde edindiğim bilgi ve tecrübeler, bana daha büyük bir çalışma motivasyonu kazandırdı. Teknolojinin sunduğu imkanlar doğrultusunda, ülkemizin global arenada daha güçlü bir oyuncu olması için çalışmalarımı daha da ileriye taşımak istiyorum. Bu süreç, bana daha fazla çalışma ve yenilikçi çözümler üretme isteği uyandırdı. Gelecek vizyonumda, bu yenilikleri ve fırsatları değerlendirmek, ülkemizin teknolojik ve bilimsel alanlarda daha ileriye gitmesini sağlamak en büyük hedefimdir.
+            <br><br>
+            Teknolojinin sunduğu olanakları, geçmişin izlerini geleceğe taşırken, ülkemin refahını ve gelişimini artırma amacına hizmet edecek şekilde kullanmak benim en büyük hedefimdir. Geleceğe olan inancım ve kararlılığım, beni her gün daha iyi bir versiyonum olmaya ve ülkemin daha parlak bir geleceğe ulaşması için çalışmaya teşvik ediyor.</p>
+
+
+
+   <br>
+            <br>
+            <br>
+            <br>
+            <br>
             <div id="proje2" class="project-section">
                 <h2>Mikrodenetleyiciler</h2>
-                <p>Mikrodenetleyici (mikrodenetleyiciye İngilizcede kısaca MCU, MC, UC veya μC de denir) bir VLSI entegre devre çipinde küçük bir bilgisayar'dır. Mikrodenetleyiciler, gömülü sistemler içinde, belirli bir işlevi yerine getirmek üzere tasarlanmış küçük, entegre bir bilgisayardır. Genellikle bir mikroişlemci, bellek (RAM ve ROM), giriş/çıkış portları ve diğer destekleyici bileşenleri içerir.</p>
+                <p>
+                    Mikrodenetleyici (mikrodenetleyiciye İngilizcede kısaca MCU, MC, UC veya μC de denir) bir VLSI entegre devre çipinde küçük bir bilgisayar'dır. Mikrodenetleyici, bellek ve programlanabilir giriş/çıkış çevre birimleri ile birlikte bir veya daha fazla CPU (işlemci çekirdeği'ni) kapsar.
+                </p>
+                <p>
+                    Kısıtlı miktarda olmakla birlikte, yeterince hafıza birimlerine ve giriş – çıkış uçlarına sahip olmaları sayesinde tek başlarına çalışabildikleri gibi, donanımı oluşturan diğer elektronik devrelerle irtibat kurabilir, uygulamanın gerektirdiği fonksiyonları gerçekleştirebilirler. Üzerlerinde analog-dijital çevirici gibi tümleşik devreler barındırmaları sayesinde algılayıcılardan her türlü verinin toplanması ve işlenmesinde kullanılabilmektedirler. Ufak ve düşük maliyetli olmaları gömülü uygulamalarda tercih edilmelerini sağlamaktadır. Mikrodenetleyiciler sıradan mikroişlemcilere nazaran aşağıda listelenen 4 temel avantajları sayesinde elektronik sanayinde günümüzde oldukça büyük bir uygulama alanına sahiptirler:
+                </p>
+                <ul>
+                    <li>oldukça küçük boyutludurlar,</li>
+                    <li>çok düşük güç tüketimine sahiptirler,</li>
+                    <li>düşük maliyetlidirler,</li>
+                    <li>yüksek performansa sahiptirler.</li>
+                </ul>
+                <p>
+                    Mikrodenetleyici işlemci, bellek ve çevre birimleri ile bağımsız bir sistemdir ve gömülü sistem olarak kullanılabilir.
+                </p>
+                <p>
+                    Mikroişlemci, merkezi işlem birimidir. Sadece işlemleri yönetir ve karar verir fakat işlemleri gerçekleştiremez. Mikrodenetleyici ise içinde işlemci, hafıza, giriş/çıkış, rom, ram gibi birimleri taşıyan küçük yapıda bir bilgisayardır. Bundan dolayı tek başına işlemleri denetler ve gerçekleştir.
+                </p>
+                <p>
+                    Mikroişlemci, karmaşık sistemleri kontrol etme amaçlı kullanılırken mikrodenetleyici daha basit devrelerde tercih edilir.
+                </p>
+                <p>
+                    Mikroişlemcinin, programlanması karmaşıkken mikrodenetleyicinin programlanması daha basittir.
+                </p>
+                <p>
+                    Mikroişlemci fiyatı pahalıyken, mikrodenetleyici fiyatı oldukça düşüktür. Bu yüzden maliyet kriterlerine bakılarak basit sistemlerde denetleyici kullanılırken daha karmaşık sistemlerde ise işlemci kullanılmaktadır.
+                </p>
             </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
             <div id="proje3" class="project-section">
                 <h2>Konnektörler</h2>
-                <p>Konnektörler, kablo devrelerinin yolunu en hızlı ve en kolay şekilde ayırmak ya da kesmek amacıyla kullanılır. Genellikle elektriksel sinyalleri veya güç iletimini sağlamak için kullanılırlar. Konnektörler, farklı tiplerde ve boyutlarda gelir ve çeşitli endüstrilerde, özellikle otomotiv, telekomünikasyon ve bilgisayar donanımlarında yaygın olarak kullanılır.</p>
-            </div>
-            <div id="proje4" class="project-section">
-                <h2>Leaky Feeder Kablo</h2>
-                <p>Yarıklı kablo tünel ve yer altı madenleri gibi ortamlarda kullanılan bir haberleşme sistemidir. Leaky feeder kablolar, radyo sinyallerinin kablo boyunca yayılmasına izin verir ve bu sinyallerin kapsama alanını genişletir. Bu sistemler, özellikle sinyalin zayıf olduğu yerlerde veya sinyalin geçişinin zor olduğu ortamlarda kullanılır.</p>
-            </div>
+                <p>
+                    Konnektörler, kablo devrelerinin yolunu en hızlı ve en kolay şekilde ayırmak ya da kesmek amacıyla kullanılır. Elektrik konnektörlerinin uygun yapıda ve kalitede olması önemlidir. Konnektör (connect); koaksiyel kabloyu bilgisayarlara ve ağ cihazlarına bağlamak için kullanılır.
+                </p>
+                <h3>Konnektörlerin Kullanım Alanları</h3>
+                <ul>
+                    <li>Enerji üretiminde kullanılan rüzgar türbinlerinin bağlantılarında.</li>
+                    <li>Denizcilik piyasasında, gemiler ve özel platformlarda.</li>
+                    <li>Otomotiv sanayi.</li>
+                    <li>Yer altı ve yer üstü sondaj çalışmalarında.</li>
+                    <li>Titreşimin yoğun olduğu demir yolu gibi alanlarda konnektör bağlantıları görülür.</li>
+                </ul>
+                <h3>Konnektörlerin Çeşitleri</h3>
+                <h4>BNC Konnektör</h4>
+                <ul>
+                    <li><strong>BNC kablo konnektörü:</strong> BNC kablo konnektörü kablonun ucunda yer alır.</li>
+                    <li><strong>BNC T konnektör:</strong> Koaksiyel kabloyu network adaptörüne (PC’ye) bağlamak için kullanılır.</li>
+                    <li><strong>BNC barrel konnektör:</strong> İki koaksiyel kablonun birbirine bağlanmasını sağlar.</li>
+                    <li><strong>BNC-TOS çevirici konnektör:</strong> BNC başlığından jak ucuna dönüştürmesini sağlar.</li>
+                </ul>
+                <h4>RCA Konnektör</h4>
+                <p>RCA konnektörleri, ses ve video sinyalini taşımak için kullanılır. En önemli özellik, erkek konnektörün sinyal taşıyan canlı ucunun, dış kısımda kalan referans ucu temas etmeden dişi kısım ile değmesidir. Çalışan cihazlarda konnektör sökülüp takılırken, kısa süreli yüksek bir sesin çıkmasına, hatta bazı durumlarda cihazın bozulmasına neden olabilir. Bu yüzden, cihaz çalışıyorken RCA konnektörü sökülüp takılmamalıdır.</p>
+                <h4>SCA Konnektör</h4>
+                <p>SCA konnektör, en çok fiber optik kablo konnektörü olarak kullanılır ve kare yüzlü olduğundan dolayı montajı daha kolaydır.</p>
+                <h4>RJ-45 Konnektör</h4>
+                <p>RJ-45 konnektörler, Ethernet ağı için kullanılan bir konnektör türüdür. Ethernet kablosu ile NIC (Network Interface Card) kartına bağlanılmasını sağlar. Her RJ45 konnektöründe sekiz pin vardır.</p>
+                <h4>RS-232 Konnektör</h4>
+                <p>RS-232 konnektör, seri haberleşme ve noktadan noktaya veri aktarımı için üretilmiştir. Mikro denetleyici ve PC arasında veri transferi yapılan uygulamalarda yaygın olarak kullanılır.</p>
+                <h4>RS-422 Konnektör</h4>
+                <p>RS-422 konnektör, veri aktarımı için üretilmiş seri iletişim elemanıdır. Her bir sinyal için iki kablo kullandığından, gürültüye karşı daha az duyarlıdır.</p>
+                <h4>RS-485 Konnektör</h4>
+                <p>RS-485 konnektör, seri haberleşme sistemlerinde kullanılır. Elektriksel sinyalleşme dengelidir ve çok noktalı sistemler desteklenir. RS485, daha uzun mesafelerde, gürültülü ortamlarda, daha yüksek hız gerektiren yerlerde ve daha çok alıcı vericinin gerekli olduğu yerlerde kullanılır.</p>
+                <h4>Sonlandırıcı</h4>
+                <p>Kablonun sonuna takılan sonlandırıcılar, içinde 50 ohm’luk direnç bulunan BNC tip konnektörlerdir. Bu konnektörler olmadan ağ çalışmaz. Koaksiyel kablo ile oluşturulan ağ topolojilerinde, her bir segmentin başlangıç ve bitimi bir direnç ile sonlandırılmalıdır.</p>
+                <h3>Gemilerde Konnektör Kullanmanın Avantajları</h3>
+                <p>Konnektörler dayanıklı olması, deniz koşullarında zarar görmemesi ve gemilerde yüksek hareket ve titreşime rağmen veri iletimlerinin sağlıklı bir şekilde iletilmesi gibi avantajlar sağlar. Ayrıca kolay kurulumları da konnektörlerin kullanma avantajlarındandır.</p>
+                
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+
+                <div id="proje4" class="project-section">
+                    <div id="leaky-feeder" class="project-section">
+                        <h2>Leaky Feeder Kablo</h2>
+                        <p>Yarıklı kablo tünel ve yer altı madenleri gibi ortamlarda kullanılan bir haberleşme sistemidir. Layman ilkeleri dikkate alınarak hazırlanan bu sistemde üzerindeki işareti dışarıya yaymamak için tasarlanan kablo üzerinde oluşturulan yarıklar ile işaretin istenilen noktalarda dış ortama yayınlanması sağlanmaktadır.</p>
+                        
+                        <h3>Kullanım Alanları</h3>
+                        <p>Yarıklı kablo, tünel, metro, uçak, hava alanları, gemi vb. ortamları boydan boya geçen bir koaksiyel kablodur. Bu kablo üzerindeki yarıklar vasıtasıyla radyo dalgalarını yayınlayan veya yayınlanan işaretleri alan bir anten görevi üstlenmiştir. Kablo üzerindeki yarıklar, dalganın dışa yayılmasını engelleyen dış metal zırh üzerinde oluşturulan boşluklarla sağlanır. Bu boşluklar hem işaret yayma hem de alma için kullanılır.</p>
+                        <p>Kablo üzerindeki bu yarıklar yüzünden, işareti algılanabilir ve anlamlı seviyede tutabilmek için hat boyunca 350-500 metrede bir işaret güçlendirici cihazlara ihtiyaç duyulur. Yayılan işaret genellikle mobil aygıtlar tarafından alınır. Bir çalışan veya lokomotif gibi bir araç üzerindeki taşınabilir aletler ile sistemin geri kalanı ve dış ortam haberleşmesi bu anten vazifesi gören kablo sistemi vasıtasıyla mümkün olur. Sistemde yapısal olarak tek bir anten olduğu için hareketli sistemlerde roaming problemi de oluşmamaktadır. Bu sistem hem alıcı hem de verici özelliği taşıdığı için iki yönlü haberleşme mümkün olmaktadır.</p>
+                        <p>Kullanılan işaretin özelliklerinden dolayı (genellikle UHF ve VHF) katı cisimleri geçmesi mümkün olmasa da bu sistem sayesinde hat boyunca iletişim çift yönlü olarak mümkün kılınmış olur.</p>
+                        <p>Gemilerde telsiz sistemlerinde daha verimli bir iletişimin iletilmesi ve acil durum (yangın, kaza, askeri operasyon vb.) gibi durumların yönetilmesinde rol oynar.</p>
+                    </div>
+                    
+
             <a href="mailto:samikcpnr@gmail.com">samikcpnr@gmail.com</a>
         </section>
     </main>
@@ -232,6 +198,8 @@
             var menu = document.getElementById('menu');
             var menuToggle = document.querySelector('.menu-toggle');
 
+            
+            // Profil simgesine tıklama olayını ayarla
             profileIcon.addEventListener('click', function() {
                 if (leftColumn.classList.contains('hidden')) {
                     leftColumn.classList.remove('hidden'); // Sol sütunu tekrar aç
@@ -246,6 +214,7 @@
                 }
             });
 
+            // Menü açma/kapama işlevini tanımla
             function toggleMenu() {
                 if (menu.classList.contains('open')) {
                     menu.classList.remove('open'); // Menü kapanırken kaydır
@@ -254,14 +223,17 @@
                 }
             }
 
+            // Menü açma/kapama işlevini menü düğmesine bağla
             menuToggle.addEventListener('click', toggleMenu);
 
+            // Menü açıkken dışarıya tıklayınca menüyü kapatma işlevi
             document.addEventListener('click', function(event) {
                 if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
                     menu.classList.remove('open'); // Menü dışına tıklanınca kapat
                 }
+                
             });
         });
     </script>
 </body>
-</html>
+</html> 
