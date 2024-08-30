@@ -1,0 +1,426 @@
+body {
+    font-family: Arial, sans-serif; /* Yazı tipi */
+    margin: 0; /* Tarayıcı varsayılan margin'ini sıfırlar */
+    padding: 0; /* Tarayıcı varsayılan padding'ini sıfırlar */
+    background-color: #ffffff; /* Arka plan rengi */
+    color: #333333; /* Yazı rengi */
+    overflow: hidden; /* Sayfa taşmasını gizler */
+      -webkit-overflow-scrolling: touch; /* iOS cihazlarda pürüzsüz kaydırma */
+}
+
+/* Başlık (header) stili */
+.header {
+    background-color: #1E88E5; /* Arka plan rengi */
+    padding: 10px; /* İç boşluk */
+    text-align: center; /* Metni ortalar */
+    font-size: 24px; /* Yazı boyutu */
+    font-weight: bold; /* Kalın yazı tipi */
+    position: relative; /* Konumlandırma türü */
+    color: #FFFFFF; /* Yazı rengi */
+    transition: background-color 0.3s ease; /* Arka plan renginin geçiş efekti */
+}
+
+/* Menü butonunun stili */
+.menu-toggle {
+    display: block; /* Görünür hale getirir */
+    position: absolute; /* Mutlak konumlandırma */
+    top: 10px; /* Üstten 10px uzaklık */
+    right: 10px; /* Sağdan 10px uzaklık */
+    font-size: 24px; /* Yazı boyutu */
+    cursor: pointer; /* Fare işaretçisini değiştirir */
+    z-index: 1004; /* Diğer elemanlardan üstte kalır */
+    color: #FFFFFF; /* Yazı rengi */
+    transition: transform 0.3s ease; /* Dönüşüm efekti */
+    transition: color 0.3s ease, transform 0.3s ease; /* Efekt geçişi */
+}
+
+/* Menü stili */
+.menu {
+    display: block; /* Varsayılan olarak gizlenir */
+    position: absolute; /* Sabit konumlandırma */
+    top: 0; /* Üstten 0 uzaklık */
+    right: 0; /* Sağdan 0 uzaklık */
+    background-color: #F5F5F5; /* Arka plan rengi */
+    width: 300px; /* Genişlik */
+    height: 100%; /* Yükseklik */
+    padding: 0px; /* İç boşluk */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Gölgeler */
+    overflow-y: auto; /* Dikey kaydırma */
+    z-index: 1004; /* Diğer elemanlardan altında kalır */
+    transform: translateX(100%); /* Başlangıçta menü ekran dışında */
+    opacity: 0; /* Opaklık başlangıçta sıfır */
+    transition: color 0.3s ease, transform 0.3s ease; /* Efekt geçişi */
+    transition: transform 0.3s ease, padding 0.3s ease, width 0.3s ease; /* Efektler */
+}
+
+/* Menü butonuna fare ile gelindiğinde uygulanacak stil */
+.menu-toggle:hover {
+    color: #FFD700; /* Renk değişimi (Altın rengi) */
+    transform: scale(1.2); /* Büyüme efekti */
+}
+
+/* Menü açıldığında uygulanacak stil */
+.menu.open {
+    display: block; /* Görünür hale getirir */
+    transform: translateX(0); /* Menü açıldığında ekran içinde olur */
+    top: 48px; /* Üstten 48px uzaklık */
+    opacity: 1; /* Opaklık tamamen görünür */
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.2); /* Daha belirgin gölge */
+    transition: transform 0.3s ease, padding 0.3s ease, width 0.3s ease; /* Efektler */
+}
+
+/* Menü kapanırken gölge efektini azaltır */
+.menu.close {
+    transform: translateX(100%); /* Menü kapanırken ekran dışında olur */
+    opacity: 0; /* Opaklık tamamen kaybolur */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Daha az belirgin gölge */
+    transition: transform 10s ease, padding 10s ease, width 10s ease; /* Efektler */
+}
+
+/* Menü içindeki liste stili */
+.menu ul {
+    list-style: none; /* Liste işaretlerini kaldırır */
+    padding: 0; /* İç boşluk */
+    text-align: left; /* Metni sola hizalar */
+}
+
+/* Menü içindeki liste elemanlarının stili */
+.menu ul li {
+    margin-bottom: 20px; /* Alt boşluk */
+}
+
+/* Menü içindeki bağlantıların stili */
+.menu ul li a {
+    text-decoration: none; /* Alt çizgi yok */
+    font-size: 18px; /* Yazı boyutu */
+    color: #1E88E5; /* Yazı rengi */
+}
+
+/* Sol panelin stili */
+.left {
+    width: 20%; /* Genişlik */
+    text-align: center; /* Metni ortalar */
+    background-color: #F5F5F5; /* Arka plan rengi */
+    height: 100%; /* Yükseklik */
+    box-sizing: border-box; /* Border-box model */
+    padding: 20px; /* İç boşluk */
+    position: relative; /* Konumlandırma türü */
+    border-right: 2px solid #1E88E5; /* Sağ kenar rengi ve kalınlığı */
+    transition: transform 0.3s ease, padding 0.3s ease, width 0.3s ease; /* Efektler */
+}
+
+/* Sol panel küçüldüğünde uygulanacak stil */
+.left.small {
+    width: 5%; /* Genişlik */
+    padding: 10px; /* İç boşluk */
+    border-right: 2px solid #1E88E5; /* Sağ kenar rengi ve kalınlığı */
+    text-align: center; /* Metni ortalar */
+    transition: transform 0.3s ease, padding 0.3s ease, width 0.3s ease; /* Efektler */
+}
+
+/* Küçültülmüş sol panelde bazı elemanları gizler */
+.left.small .profile-wrapper,
+.left.small p,
+.left.small .contact {
+    display: none; /* Gizler */
+}
+
+/* Küçültülmüş sol panelde profil simgesini ortalar */
+.left.small .profile-icon {
+    position: absolute; /* Mutlak konumlandırma */
+    top: 10px; /* Üstten 10px uzaklık */
+    left: 50%; /* Orta yatay konum */
+    transform: translateX(-50%); /* Ortalamak için kaydırır */
+}
+
+/* Küçültülmüş sol panelde sosyal medya ikonlarını gösterir */
+.left.small .social-icons {
+    display: block; /* Görünür hale getirir */
+    margin-top: 70px; /* Üstten boşluk */
+}
+
+/* Küçültülmüş sol panelde profil simgesinin boyutunu ayarlar */
+.left.small .profile-icon i {
+    font-size: 30px; /* Yazı boyutu */
+}
+
+/* Sol paneli gizler */
+.left.hidden {
+    display: none; /* Gizler */
+}
+
+/* Profil simgesi stili */
+.profile-icon {
+    position: absolute; /* Mutlak konumlandırma */
+    top: 10px; /* Üstten 10px uzaklık */
+    left: 10%; /* Soldan 10% uzaklık */
+    transform: translateX(-50%); /* Ortalamak için kaydırır */
+    font-size: 50px; /* Yazı boyutu */
+    color: #1E88E5; /* Yazı rengi */
+    cursor: pointer; /* Fare işaretçisini değiştirir */
+    z-index: 1001; /* Diğer elemanlardan üstte kalır */
+    transition: color 0.3s ease, transform 0.3s ease; /* Efekt geçişi */
+}
+
+/* Profil simgesine fare ile gelindiğinde uygulanacak stil */
+.profile-icon:hover {
+    color: #1565C0; /* Renk değişimi */
+    transform: scale(1.2); /* Büyüme efekti */
+}
+
+/* Profil simgesi içindeki resmi yuvarlak yapar */
+.profile-icon img {
+    width: 100%; /* Genişlik */
+    height: 100%; /* Yükseklik */
+    border-radius: 50%; /* Yuvarlak yapar */
+    object-fit: cover; /* Resmi kesmeden sığdırır */
+}
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* İçerik konteyneri stili */
+.container {
+    display: flex; /* Flexbox düzeni */
+    height: calc(100vh - 60px); /* Yükseklik */
+    overflow: hidden; /* Taşmayı gizler */
+}
+
+/* Konteyner genişletildiğinde uygulanacak stil */
+.container.expanded {
+    width: 95%; /* Genişlik */
+}
+
+/* Sosyal medya ikonları stili */
+.social-icons {
+    text-align: center; /* Metni ortalar */
+    margin-top: 170px; /* Üstten boşluk */
+}
+
+/* Sosyal medya bağlantılarının stili */
+.social-icons a {
+    margin: 20px; /* Boşluk */
+    text-decoration: none; /* Alt çizgi yok */
+    font-size: 30px; /* Yazı boyutu */
+    color: #1E88E5; /* Yazı rengi */
+    transition: color 0.3s ease, transform 0.3s ease; /* Efekt geçişi */
+}
+
+/* Sosyal medya bağlantılarına fare ile gelindiğinde uygulanacak stil */
+.social-icons a:hover {
+    color: #1565C0; /* Renk değişimi */
+    transform: scale(1.2); /* Büyüme efekti */
+}
+
+/* Profil fotoğrafı wrapper'ı stili */
+.left .profile-wrapper {
+    position: relative; /* Konumlandırma türü */
+    width: 150px; /* Genişlik */
+    height: 150px; /* Yükseklik */
+    margin: 0 auto; /* Ortalar */
+    border-radius: 50%; /* Yuvarlak yapar */
+    background-color: #ffffff; /* Arka plan rengi */
+    display: flex; /* Flexbox düzeni */
+    align-items: center; /* Ortalar */
+    justify-content: center; /* Ortalar */
+    overflow: hidden; /* Taşmayı gizler */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Gölgeler */
+    transition: box-shadow 0.3s ease; /* Gölge geçiş efekti */
+}
+
+/* Profil fotoğrafı içindeki resmin stili */
+.left .profile-wrapper img {
+    width: 100%; /* Genişlik */
+    height: 100%; /* Yükseklik */
+    border-radius: 50%; /* Yuvarlak yapar */
+    object-fit: cover; /* Resmi kesmeden sığdırır */
+    transition: transform 5s ease; /* Animasyon geçişi */
+}
+
+/* Profil fotoğrafına fare ile gelindiğinde animasyonu tetikler */
+.left .profile-wrapper:hover img {
+    transform: scale(1.1); /* Büyüme efekti */
+    animation: pulse 1s infinite; /* Pulsasyon animasyonu */
+}
+
+/* Profil bilgileri stili */
+.left p {
+    font-size: 20px; /* Yazı boyutu */
+    font-weight: bold; /* Kalın yazı tipi */
+    margin: 10px 0; /* Üst ve alt boşluk */
+}
+
+/* İletişim bilgileri stili */
+.contact {
+    margin-top: 20px; /* Üstten boşluk */
+    font-size: 16px; /* Yazı boyutu */
+    color: #1E88E5; /* Yazı rengi */
+}
+
+/* İletişim bağlantılarının stili */
+.contact a {
+    text-decoration: none; /* Alt çizgi yok */
+    color: #1E88E5; /* Yazı rengi */
+    font-weight: bold; /* Kalın yazı tipi */
+}
+
+/* İletişim bağlantılarına fare ile gelindiğinde uygulanacak stil */
+.contact a:hover {
+    color: #1565C0; /* Yazı rengi değişir */
+}
+
+.right {
+    width: 80%; /* Genişlik */
+    padding: 20px; /* İç boşluk */
+    overflow-y: auto; /* Dikey kaydırma */
+    height: 86%; /* Yükseklik */
+    box-sizing: border-box; /* Border-box model */
+    position: fixed; /* Sabit konumlandırma */
+    right: 0; /* Sağ kenarda konumlandırma */
+    top: -50; /* Üst kenarda konumlandırma */
+    bottom: 40px;
+    background-color: #fff; /* Arka plan rengi (isteğe bağlı) */
+    z-index: 1000; /* Diğer öğelerin üstünde görünmesini sağlar */
+}
+/* Sağ panel başlıklarının stili */
+.right h2 {
+    font-size: 24px; /* Yazı boyutu */
+    margin-bottom: 10px; /* Alt boşluk */
+    color: #333333; /* Yazı rengi */
+}
+
+/* Sağ panel metinlerinin stili */
+.right p {
+    font-size: 16px; /* Yazı boyutu */
+    line-height: 1.6; /* Satır yüksekliği */
+}
+
+/* Alt bilgi (footer) stili */
+.footer {
+    text-align: center; /* Metni ortalar */
+    padding: 10px; /* İç boşluk */
+    background-color: #1E88E5; /* Arka plan rengi */
+    color: #FFFFFF; /* Yazı rengi */
+    position: fixed; /* Sabit konumlandırma */
+    width: 100%; /* Genişlik */
+    bottom: 0; /* Alt kısımdan 0 uzaklık */
+}
+
+/* Ekran genişliği 768px ve altı olduğunda uygulanacak stil */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Dikey düzen */
+    }
+
+    .left {
+        width: 100%; /* Genişlik */
+        height: 50vh; /* Yükseklik */
+        border-right: none; /* Sağ kenar kaldırılır */
+        border-bottom: 2px solid #1E88E5; /* Alt kenar rengi ve kalınlığı */
+        display: flex; /* Flexbox düzeni */
+        flex-direction: column; /* Dikey düzen */
+        justify-content: center; /* Ortalar */
+        transition: height 0.3s ease; /* Yükseklik geçiş efekti */
+        z-index: 1002;
+    }
+
+    .left.small {
+        width: 100%; /* Genişlik */
+        padding: 10px; /* İç boşluk */
+        height: 50px; /* Yükseklik */
+        border-bottom: 2px solid #1E88E5; /* Alt kenar rengi ve kalınlığı */
+        display: flex; /* Flexbox düzeni */
+        justify-content: center; /* Ortalar */
+        transition: height 0.3s ease; /* Yükseklik geçiş efekti */
+    }
+
+    .left .profile-wrapper {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+        border-radius: 50%; /* Tam yuvarlak yapar */
+        background-color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .left .profile-wrapper img {
+        width: 100%; /* Genişlik tam olarak kapsayıcıya uyum sağlar */
+        height: 100%; /* Yükseklik tam olarak kapsayıcıya uyum sağlar */
+        border-radius: 50%; /* Resmi de yuvarlak yapar */
+        object-fit: cover; /* Resmi kapsayıcıya sığdırır */
+        animation: pulse 5s infinite; /* Animasyonu ekledik */
+    }
+
+    .left.small .profile-icon {
+        left: 3%; /* Orta yatay konum */
+        top:25%; /* Orta dikey konum */
+        transform: translate(-50%, -50%); /* Ortalamak için kaydırır */
+    }
+
+    .left.small .social-icons {
+        display: flex; /* Görünür hale getirir */
+        justify-content: center; /* Ortalar */
+        margin-top: 5px; /* Üstten boşluk */
+        transition: color 0.3s ease, transform 0.3s ease; /* Efekt geçişi */
+        font-size: 10px; /* Yazı boyutu */
+    }
+
+    .social-icons {
+        text-align: center;
+        margin-top: -40px; /* Üstten boşluk */
+    }
+
+    .social-icons a {
+        font-size: 20px; /* Yazı boyutu */
+    }
+
+    .right {
+        width: 100%; /* Genişlik */
+        padding: 10px; /* İç boşluk */
+        overflow-y: auto; /* Dikey kaydırma */
+        height: calc(100vh - 60px); /* Yükseklik */
+        box-sizing: border-box; /* Border-box model */
+        position: relative; /* Konumlandırma türü */
+        right: 0; /* Sağ kenarda konumlandırma */
+        background-color: #fff; /* Arka plan rengi */
+        z-index: 1000; /* Diğer öğelerin üstünde görünmesini sağlar */
+         overflow-y: auto;
+    }
+
+    .menu-toggle {
+        display: block; /* Görünür hale getirir */
+    }
+
+    .menu {
+        width: 80%; /* Menü genişliği */
+        height: auto; /* Yükseklik */
+        padding: 10px; /* İç boşluk */
+        position: fixed; /* Sabit konumlandırma */
+        top: 160px; /* Üstten 60px uzaklık */
+        left: 50%; /* Orta yatay konum */
+        transform: translateX(-50%); /* Ortalamak için kaydırır */
+        text-align: center; /* Metni ortalar */
+    }
+
+    .menu.open {
+        position: fixed; /* Menü açıldığında sabit konumlandırma */
+        top: 50px; /* Üstten 60px uzaklık */
+        left: 50%; /* Orta yatay konum */
+        transform: translateX(-50%); /* Ortalamak için kaydırır */
+        text-align: center; /* Metni ortalar */
+    }
+
+/*    .menu.open ~ .profile-icon { */
+  /*      display: none; /* Menü açıkken profil ikonunu gizler */
+    /*}*/
+}
